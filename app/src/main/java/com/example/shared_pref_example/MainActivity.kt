@@ -7,28 +7,24 @@ import androidx.databinding.DataBindingUtil
 import com.example.shared_pref_example.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
-    lateinit var obj:MyShared
+
     lateinit var binding:ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding=DataBindingUtil.setContentView(this,R.layout.activity_main)
+          binding.savebutton.setOnClickListener {
 
-        obj=MyShared(this)
-
-
-            binding.savebutton.setOnClickListener {
-
-                    obj.setString("Email",binding.mymail.text.toString())
-                    obj.setString("Password",binding.password.text.toString())
+                MyShared.setString("Email",binding.mymail.text.toString(),this)
+                MyShared.setString("Password",binding.password.text.toString(),this)
                     binding.mymail.text.clear()
                     binding.password.text.clear()
 
             }
         binding.sowbtn.setOnClickListener {
-            if (obj.notNull("Email")&& obj.notNull("Password"))
+            if (MyShared.notNull("Email",this)&& MyShared.notNull("Password",this))
             {
-                binding.txtemail.text = obj.getStr("Email")
-                binding.textpassword.text =obj.getStr("Password")
+                binding.txtemail.text = MyShared.getStr("Email",this)
+                binding.textpassword.text =MyShared.getStr("Password",this)
             }
         }
 

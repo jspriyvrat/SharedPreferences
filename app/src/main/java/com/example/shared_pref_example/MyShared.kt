@@ -5,10 +5,12 @@ import android.content.SharedPreferences
 import android.provider.Settings.Global.putString
 import androidx.appcompat.app.AppCompatActivity
 
-class MyShared(val context:Context) {
+object  MyShared{
+
     lateinit var sharedPreferences: SharedPreferences
 
-    fun setString(key: String, value: String) {
+    fun setString(key: String, value: String,context: Context) {
+
         sharedPreferences =
             context.getSharedPreferences("userDetails", AppCompatActivity.MODE_PRIVATE)
         val editor: SharedPreferences.Editor = sharedPreferences.edit()
@@ -16,7 +18,7 @@ class MyShared(val context:Context) {
         editor.commit()
     }
 
-    fun setInt(key: String, value: Int) {
+    fun setInt(key: String, value: Int,context: Context) {
         sharedPreferences =
             context.getSharedPreferences("userDetails", AppCompatActivity.MODE_PRIVATE)
         val editor: SharedPreferences.Editor = sharedPreferences.edit()
@@ -24,7 +26,7 @@ class MyShared(val context:Context) {
         editor.commit()
     }
 
-    fun setBool(key: String, value: Boolean) {
+    fun setBool(key: String, value: Boolean,context: Context) {
         sharedPreferences =
             context.getSharedPreferences("userDetails", AppCompatActivity.MODE_PRIVATE)
         val editor: SharedPreferences.Editor = sharedPreferences.edit()
@@ -32,25 +34,25 @@ class MyShared(val context:Context) {
         editor.commit()
     }
 
-    fun getStr(key: String): String? {
+    fun getStr(key: String,context: Context): String? {
         sharedPreferences =
             context.getSharedPreferences("userDetails", AppCompatActivity.MODE_PRIVATE)
         return sharedPreferences.getString(key, "Data not found")
     }
 
-    fun getInteger(key: String): String? {
+    fun getInteger(key: String,context: Context): String? {
         sharedPreferences =
             context.getSharedPreferences("userDetails", AppCompatActivity.MODE_PRIVATE)
         return sharedPreferences.getString(key, "Data not found")
     }
 
-    fun getBool(key: String): String? {
+    fun getBool(key: String,context: Context): String? {
         sharedPreferences =
             context.getSharedPreferences("userDetails", AppCompatActivity.MODE_PRIVATE)
         return sharedPreferences.getString(key, "Data not found")
     }
 
-    fun notNull(key: String): Boolean
+    fun notNull(key: String,context: Context): Boolean
     {
         sharedPreferences =context.getSharedPreferences("userDetails", AppCompatActivity.MODE_PRIVATE)
         return sharedPreferences.contains(key)
